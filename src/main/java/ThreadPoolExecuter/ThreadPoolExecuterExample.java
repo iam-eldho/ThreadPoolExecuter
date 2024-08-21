@@ -9,11 +9,11 @@ public class ThreadPoolExecuterExample {
                 TimeUnit.MINUTES, new ArrayBlockingQueue<>(2), new CustomThreadFactory(),
                 new Handler());
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 7; i++) { // 7 tasks
             int finalI = i;
             threadPoolExecutor.submit(() -> {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(5000); // setting a delay
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -26,7 +26,7 @@ public class ThreadPoolExecuterExample {
     }
 }
 
-class CustomThreadFactory implements ThreadFactory {
+class CustomThreadFactory implements ThreadFactory { // Custom thread factory for setting name, priority and daemon
 
     @Override
     public Thread newThread(Runnable r) {
@@ -37,7 +37,7 @@ class CustomThreadFactory implements ThreadFactory {
     }
 }
 
-class Handler implements RejectedExecutionHandler {
+class Handler implements RejectedExecutionHandler { // Handle custom handler if rejection of task occurs
 
     @Override
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
