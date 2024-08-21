@@ -14,6 +14,8 @@ public class CallableExample {
         // main thread will continue processing
         // inorder to know the status of the above executing thread, we can use FUTURE
 
+        // here nothing returns, but we need the future object to know the status, complete etc..
+        // ? means it doesn't know the return
         Future<?> futureObj = threadPoolExecutor.submit(() -> {
             try {
                 Thread.sleep(7000); // 7 second delay
