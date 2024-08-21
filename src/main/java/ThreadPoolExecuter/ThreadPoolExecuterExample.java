@@ -5,12 +5,16 @@ import java.util.concurrent.*;
 public class ThreadPoolExecuterExample {
 
     public static void main(String[] args) {
+
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 4, 10,
                 TimeUnit.MINUTES, new ArrayBlockingQueue<>(2), new CustomThreadFactory(),
                 new Handler());
+        threadPoolExecutor.allowCoreThreadTimeOut(true); // keepAliveTime only used when this set to true
 
+        // 7 task will be ready to execute
         for (int i = 0; i < 7; i++) { // 7 tasks
             int finalI = i;
+            // creating thread
             threadPoolExecutor.submit(() -> {
                 try {
                     Thread.sleep(5000); // setting a delay
