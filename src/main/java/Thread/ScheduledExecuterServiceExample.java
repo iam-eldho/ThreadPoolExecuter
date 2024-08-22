@@ -31,5 +31,18 @@ public class ScheduledExecuterServiceExample {
             System.out.println(e);
         }
         future1.cancel(true);
+
+
+        ScheduledExecutorService executorService3 = Executors.newScheduledThreadPool(2);
+
+        executorService3.scheduleWithFixedDelay(() -> {
+            System.out.println("hello world");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }, 5, 3, TimeUnit.SECONDS); // after 5 seconds the process starts and each 8 second its repeat.
+
     }
 }
